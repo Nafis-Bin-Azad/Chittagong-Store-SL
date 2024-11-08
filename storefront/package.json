@@ -24,7 +24,7 @@
     "@types/react": "17.0.40"
   },
   "dependencies": {
-    "@headlessui/react": "^1.6.1",
+    "@headlessui/react": "^1.7.19",
     "@hookform/error-message": "^2.0.0",
     "@medusajs/js-sdk": "preview",
     "@medusajs/types": "preview",
@@ -41,11 +41,14 @@
     "pg": "^8.11.3",
     "qs": "^6.12.1",
     "react": "^18.2.0",
-    "react-country-flag": "^3.0.2",
+    "react-country-flag": "^3.1.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.3.0",
     "react-instantsearch-hooks-web": "^6.29.0",
     "react-intersection-observer": "^9.3.4",
     "server-only": "^0.0.1",
+    "sharp": "^0.33.5",
+    "swiper": "^11.1.14",
     "tailwindcss-radix": "^2.8.0",
     "webpack": "^5"
   },
