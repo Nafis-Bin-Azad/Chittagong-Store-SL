@@ -4,10 +4,12 @@
 import { Listbox, Transition } from "@headlessui/react"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import ReactCountryFlag from "react-country-flag"
-
 import { useParams, usePathname } from "next/navigation"
 import { updateRegion } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
+
+// Import a spinner component or use an icon
+import { FaSpinner } from "react-icons/fa"
 
 type CountryOption = {
   country: string
@@ -21,6 +23,7 @@ type CountrySelectProps = {
 
 const CountrySelect = ({ regions }: CountrySelectProps) => {
   const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const params = useParams() as { countryCode: string }
   const countryCode = params.countryCode || ""
@@ -65,7 +68,7 @@ const CountrySelect = ({ regions }: CountrySelectProps) => {
   return (
     <div className="relative">
       <Listbox value={current} onChange={handleChange}>
-        <Listbox.Button className="py-1 w-full flex items-center gap-x-2 hover:text-gray-300">
+        <Listbox.Button className="py-1 flex items-center gap-x-2 hover:text-gray-300">
           <span>Shipping to:</span>
           {current && (
             <span className="flex items-center gap-x-2">
@@ -111,6 +114,9 @@ const CountrySelect = ({ regions }: CountrySelectProps) => {
           </Listbox.Options>
         </Transition>
       </Listbox>
+      {loading && (
+        <FaSpinner className="animate-spin ml-2 text-gray-500" size={16} />
+      )}
     </div>
   )
 }
