@@ -59,14 +59,23 @@ const CountrySelect = ({ regions }: CountrySelectProps) => {
     }
   }, [options, countryCode])
 
-  const handleChange = (option: CountryOption) => {
+  const handleChange = async (option: CountryOption) => {
     if (option && option.country && option.country !== countryCode) {
-      updateRegion(option.country, currentPath)
+      setLoading(true)
+      try {
+        await updateRegion(option.country, currentPath)
+        // After updating the region, you might need to update the current option
+        setCurrent(option)
+      } catch (error) {
+        console.error("Failed to update region:", error)
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
   return (
-    <div className="relative">
+    <div className="relative flex items-center">
       <Listbox value={current} onChange={handleChange}>
         <Listbox.Button className="py-1 flex items-center gap-x-2 hover:text-gray-300">
           <span>Shipping to:</span>

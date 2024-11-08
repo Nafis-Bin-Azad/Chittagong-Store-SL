@@ -12,6 +12,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // ...existing extensions
       transitionProperty: {
         width: "width margin",
         height: "height",
@@ -71,6 +72,13 @@ module.exports = {
         ],
       },
       keyframes: {
+        // Include the default spin keyframes
+        spin: {
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        // Your custom keyframes
         ring: {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
@@ -142,6 +150,9 @@ module.exports = {
         },
       },
       animation: {
+        // Include the default spin animation
+        spin: "spin 1s linear infinite",
+        // Your custom animations
         ring: "ring 2.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
         "fade-in-right":
           "fade-in-right 0.3s cubic-bezier(0.5, 0, 0.5, 1) forwards",
