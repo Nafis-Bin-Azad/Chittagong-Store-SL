@@ -1,14 +1,11 @@
-// src/modules/layout/components/CountrySelect.tsx
 "use client"
 
 import { Listbox, Transition } from "@headlessui/react"
-import { Fragment, useEffect, useMemo, useState } from "react"
+import { Fragment, useMemo, useState } from "react"
 import ReactCountryFlag from "react-country-flag"
 import { useParams, usePathname } from "next/navigation"
 import { updateRegion } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
-
-// Import a spinner component or use an icon
 import { FaSpinner } from "react-icons/fa"
 
 type CountryOption = {
@@ -22,7 +19,6 @@ type CountrySelectProps = {
 }
 
 const CountrySelect = ({ regions }: CountrySelectProps) => {
-  const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
   const [loading, setLoading] = useState<boolean>(false)
 
   const params = useParams() as { countryCode: string }
@@ -48,15 +44,13 @@ const CountrySelect = ({ regions }: CountrySelectProps) => {
       .sort((a, b) => a.label.localeCompare(b.label))
   }, [regions])
 
-  useEffect(() => {
+  const current = useMemo(() => {
     if (countryCode && options.length > 0) {
-      const option = options.find(
+      return options.find(
         (o) => o.country.toLowerCase() === countryCode.toLowerCase()
       )
-      if (option && option.country !== current?.country) {
-        setCurrent(option)
-      }
     }
+    return undefined
   }, [options, countryCode])
 
   const handleChange = async (option: CountryOption) => {
@@ -64,8 +58,8 @@ const CountrySelect = ({ regions }: CountrySelectProps) => {
       setLoading(true)
       try {
         await updateRegion(option.country, currentPath)
-        // After updating the region, you might need to update the current option
-        setCurrent(option)
+        // Since the region change will cause a route update,
+        // the current country code will update automatically
       } catch (error) {
         console.error("Failed to update region:", error)
       } finally {

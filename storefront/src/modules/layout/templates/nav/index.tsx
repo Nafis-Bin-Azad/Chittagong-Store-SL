@@ -12,6 +12,7 @@ import { FaRegHeart } from "react-icons/fa"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import NavbarWrapper from "@modules/layout/components/navbar-wrapper"
 import CountrySelect from "@modules/layout/components/country-select"
+import { BsCart } from "react-icons/bs"
 
 export default async function Nav() {
   // Fetch regions data on the server side
@@ -95,10 +96,9 @@ export default async function Nav() {
               <FaRegHeart />
             </LocalizedClientLink>
 
-            <Suspense>
+            <Suspense fallback={<BsCart size={20} className="relative" />}>
               <CartButton />
             </Suspense>
-            <span className="text-base font-bold">$0.00</span>
           </div>
         </div>
       </div>
