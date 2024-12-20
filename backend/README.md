@@ -68,3 +68,8 @@ Join our [Discord server](https://discord.com/invite/medusajs) to meet other com
 - [Twitter](https://twitter.com/medusajs)
 - [LinkedIn](https://www.linkedin.com/company/medusajs)
 - [Medusa Blog](https://medusajs.com/blog/)
+
+## Other channels
+
+To update the deleted or blocked database and re-populate the database again after renewing here is what you need to do to delete the old database and setup a new one. Delete database in render. Then create a new one the database link to use must be in the following format. Update the env`DATABASE_URL=postgresql://chittagongstoresl_user:ch5PfRbhK2gassxNIy3lDVsU0dRYtZ9q@dpg-ct0as1i3esus73893310-a.oregon-postgres.render.com/chittagongstoresl?sslmode=require"` and then run the following command in the `backend npx medusa migrations run` then run the following command `medusa user -e admin@medusa.local -p newpassword` once thats done login to admin panel and copy api public key to env in frontend config
+
